@@ -15,14 +15,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-
 public class MainMenu extends JFrame implements ActionListener{
   /**
    *
    */
   private static final long serialVersionUID = 1L;
 
-  private Font menu, title, text;
   private JButton insertButton = new JButton("Insert Menu");
   private JButton viewButton = new JButton("View menus");
   private JButton updateButton = new JButton("Update menu");
@@ -31,22 +29,13 @@ public class MainMenu extends JFrame implements ActionListener{
   JButton[] buttons = {insertButton, viewButton, updateButton, deleteButton};
   
   public MainMenu() {
-    try {
-      title = Font.createFont(Font.TRUETYPE_FONT, Main.class.getResourceAsStream("/Fonts/BebasNeue-Bold.ttf")).deriveFont(55f);
-      menu = Font.createFont(Font.TRUETYPE_FONT, Main.class.getResourceAsStream("/Fonts/BebasNeue-Bold.ttf")).deriveFont(40f);
-      text = Font.createFont(Font.TRUETYPE_FONT, Main.class.getResourceAsStream("/Fonts/BebasNeue-Bold.ttf")).deriveFont(35f);
-    } catch(IOException | FontFormatException e) {
-      // Do nothing
-    }
-
-    ImageIcon icon = new ImageIcon(Main.class.getResource("/Images/boba-icon.jpg"));
-    ImageIcon smallImage = new ImageIcon(new ImageIcon(Main.class.getResource("/Images/boba-icon-transparent.png")).getImage().getScaledInstance(250, 250, Image.SCALE_DEFAULT));
+    
     setTitle("Boba-Cool Main Menu");
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setResizable(false);
     setLayout(new GridLayout(2, 1));
     setSize(500, 750);
-    setIconImage(icon.getImage());
+    setIconImage(Main.icon.getImage());
     getContentPane().setBackground(ColorPicker.yellow());
     
     JPanel topPanel = new JPanel();
@@ -56,15 +45,15 @@ public class MainMenu extends JFrame implements ActionListener{
 
 
     JLabel label = new JLabel("Boba - Cool");
-    label.setFont(title);
+    label.setFont(Main.title);
     label.setForeground(ColorPicker.blueDark());
-    label.setIcon(smallImage);
+    label.setIcon(Main.smallImage);
     label.setHorizontalTextPosition(JLabel.CENTER);
     label.setVerticalTextPosition(JLabel.TOP);
     label.setHorizontalAlignment(JLabel.CENTER);    
 
     JLabel label2 = new JLabel("Menus");
-    label2.setFont(menu);
+    label2.setFont(Main.menu);
     label2.setForeground(ColorPicker.blueDark());
     label2.setHorizontalTextPosition(JLabel.CENTER);
     label2.setVerticalTextPosition(JLabel.BOTTOM);
@@ -86,25 +75,25 @@ public class MainMenu extends JFrame implements ActionListener{
     
     insertButton.setBackground(ColorPicker.yellowDarker(0));
     insertButton.setFocusable(false);
-    insertButton.setFont(text);
+    insertButton.setFont(Main.text);
     insertButton.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, ColorPicker.yellowDarker(2)));
     insertButton.addActionListener(this);
 
     viewButton.setBackground(ColorPicker.yellowDarker(0));
     viewButton.setFocusable(false);
-    viewButton.setFont(text);
+    viewButton.setFont(Main.text);
     viewButton.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, ColorPicker.yellowDarker(2)));
     viewButton.addActionListener(this);
 
     updateButton.setBackground(ColorPicker.yellowDarker(0));
     updateButton.setFocusable(false);
-    updateButton.setFont(text);
+    updateButton.setFont(Main.text);
     updateButton.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, ColorPicker.yellowDarker(2)));
     updateButton.addActionListener(this);
 
     deleteButton.setBackground(ColorPicker.yellowDarker(0));
     deleteButton.setFocusable(false);
-    deleteButton.setFont(text);
+    deleteButton.setFont(Main.text);
     deleteButton.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, ColorPicker.yellowDarker(2)));
     deleteButton.addActionListener(this);
 
