@@ -18,6 +18,7 @@ public class Main {
     } catch(IOException | FontFormatException e) {
       // Do nothing
     }
-    new MainMenu();
+    // new MainMenu();
+    new InsertMenu();
   }
 }
