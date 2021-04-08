@@ -1,15 +1,11 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontFormatException;
+import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -33,45 +29,47 @@ public class MainMenu extends JFrame implements ActionListener{
     setTitle("Boba-Cool Main Menu");
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setResizable(false);
-    setLayout(new GridLayout(2, 1));
-    setSize(500, 750);
+    setLayout(new BorderLayout());
+    // setSize(500, 750);
     setIconImage(Main.icon.getImage());
     getContentPane().setBackground(ColorPicker.yellow());
     
+    JLabel title = new JLabel("Boba - Cool");
+    title.setFont(Main.title);
+    title.setForeground(ColorPicker.blueDark());
+    title.setIcon(Main.smallImage);
+    title.setHorizontalTextPosition(JLabel.CENTER);
+    title.setVerticalTextPosition(JLabel.TOP);
+    title.setHorizontalAlignment(JLabel.CENTER); 
+
     JPanel topPanel = new JPanel();
     topPanel.setLayout(new BorderLayout());
     topPanel.setOpaque(false);
     topPanel.setBackground(new Color(255, 0, 0, 20));
-
-
-    JLabel label = new JLabel("Boba - Cool");
-    label.setFont(Main.title);
-    label.setForeground(ColorPicker.blueDark());
-    label.setIcon(Main.smallImage);
-    label.setHorizontalTextPosition(JLabel.CENTER);
-    label.setVerticalTextPosition(JLabel.TOP);
-    label.setHorizontalAlignment(JLabel.CENTER);    
-
-    JLabel label2 = new JLabel("Menus");
-    label2.setFont(Main.menu);
-    label2.setForeground(ColorPicker.blueDark());
-    label2.setHorizontalTextPosition(JLabel.CENTER);
-    label2.setVerticalTextPosition(JLabel.BOTTOM);
-    label2.setHorizontalAlignment(JLabel.CENTER);  
-    label2.setOpaque(false);
-
-    topPanel.add(label, BorderLayout.NORTH);
+    topPanel.add(title, BorderLayout.NORTH);
+    topPanel.setBorder(BorderFactory.createLineBorder(ColorPicker.yellow(), 15));
+    
     
     JPanel botContainer = new JPanel(new BorderLayout());
     botContainer.setOpaque(false);
+    botContainer.setPreferredSize(new Dimension(500, 300));
     botContainer.setBackground(new Color(255, 0, 0, 20));
-    // botContainer.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.black));
+    botContainer.setBorder(BorderFactory.createLineBorder(ColorPicker.yellow(), 15));
     
     JPanel botPanel = new JPanel();
-    botPanel.setLayout(new GridLayout(2, 2, 30, 20));
+    botPanel.setLayout(new GridLayout(2, 2, 20, 20));
     botPanel.setOpaque(false);
     botPanel.setBackground(new Color(255, 0, 0, 20));
-    botPanel.setBorder(BorderFactory.createLineBorder(ColorPicker.yellow(), 30));
+    botPanel.setBorder(BorderFactory.createLineBorder(ColorPicker.yellow(), 15));
+
+    JLabel subTitle = new JLabel("Menus");
+    subTitle.setFont(Main.menu);
+    subTitle.setForeground(ColorPicker.blueDark());
+    subTitle.setHorizontalTextPosition(JLabel.CENTER);
+    subTitle.setVerticalTextPosition(JLabel.BOTTOM);
+    subTitle.setHorizontalAlignment(JLabel.CENTER);  
+    subTitle.setOpaque(false);
+
     
     insertButton.setBackground(ColorPicker.yellowDarker(0));
     insertButton.setFocusable(false);
@@ -101,11 +99,12 @@ public class MainMenu extends JFrame implements ActionListener{
     botPanel.add(viewButton);
     botPanel.add(updateButton);
     botPanel.add(deleteButton);
-    botContainer.add(label2, BorderLayout.NORTH);
+    botContainer.add(subTitle, BorderLayout.NORTH);
     botContainer.add(botPanel, BorderLayout.CENTER);
 
-    add(topPanel);
-    add(botContainer);
+    add(topPanel, BorderLayout.NORTH);
+    add(botContainer, BorderLayout.CENTER);
+    pack();
     setLocationRelativeTo(null);
     setVisible(true);
   }
