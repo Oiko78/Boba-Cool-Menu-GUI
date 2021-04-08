@@ -4,7 +4,9 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.io.IOException;
 
 import javax.swing.BorderFactory;
@@ -14,21 +16,28 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class MainMenu extends JFrame{
+
+public class MainMenu extends JFrame implements ActionListener{
   /**
    *
    */
   private static final long serialVersionUID = 1L;
-  private Font menu, title, text;
-  public MainMenu() {
 
+  private Font menu, title, text;
+  private JButton insertButton = new JButton("Insert Menu");
+  private JButton viewButton = new JButton("View menus");
+  private JButton updateButton = new JButton("Update menu");
+  private JButton deleteButton = new JButton("Delete menu");
+
+  JButton[] buttons = {insertButton, viewButton, updateButton, deleteButton};
+  
+  public MainMenu() {
     try {
       title = Font.createFont(Font.TRUETYPE_FONT, Main.class.getResourceAsStream("/Fonts/BebasNeue-Bold.ttf")).deriveFont(55f);
       menu = Font.createFont(Font.TRUETYPE_FONT, Main.class.getResourceAsStream("/Fonts/BebasNeue-Bold.ttf")).deriveFont(40f);
       text = Font.createFont(Font.TRUETYPE_FONT, Main.class.getResourceAsStream("/Fonts/BebasNeue-Bold.ttf")).deriveFont(35f);
-
     } catch(IOException | FontFormatException e) {
-
+      // Do nothing
     }
 
     ImageIcon icon = new ImageIcon(Main.class.getResource("/Images/boba-icon.jpg"));
@@ -76,30 +85,30 @@ public class MainMenu extends JFrame{
     botPanel.setBackground(new Color(255, 0, 0, 20));
     botPanel.setBorder(BorderFactory.createLineBorder(ColorPicker.yellow(), 30));
     
-    JButton insertButton = new JButton("Insert Menu");
     insertButton.setBackground(ColorPicker.yellowDarker(0));
     insertButton.setFocusable(false);
     insertButton.setFont(text);
     insertButton.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, ColorPicker.yellowDarker(2)));
-    
-    JButton viewButton = new JButton("View menus");
+    insertButton.addActionListener(this);
+
     viewButton.setBackground(ColorPicker.yellowDarker(0));
     viewButton.setFocusable(false);
     viewButton.setFont(text);
     viewButton.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, ColorPicker.yellowDarker(2)));
-  
-    JButton updateButton = new JButton("Update menu");
+    viewButton.addActionListener(this);
+
     updateButton.setBackground(ColorPicker.yellowDarker(0));
     updateButton.setFocusable(false);
     updateButton.setFont(text);
     updateButton.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, ColorPicker.yellowDarker(2)));
-    
-    JButton deleteButton = new JButton("Delete menu");
+    updateButton.addActionListener(this);
+
     deleteButton.setBackground(ColorPicker.yellowDarker(0));
     deleteButton.setFocusable(false);
     deleteButton.setFont(text);
     deleteButton.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, ColorPicker.yellowDarker(2)));
-    
+    deleteButton.addActionListener(this);
+
     botPanel.add(insertButton);
     botPanel.add(viewButton);
     botPanel.add(updateButton);
@@ -111,5 +120,21 @@ public class MainMenu extends JFrame{
     add(botContainer);
     setLocationRelativeTo(null);
     setVisible(true);
+  }
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    if(e.getSource().equals(buttons[0])) {
+      dispose();
+      new InsertMenu();
+    } else if(e.getSource().equals(buttons[1])) {
+      dispose();
+      new ViewMenu();
+    } else if(e.getSource().equals(buttons[2])) {
+      dispose();
+      new UpdateMenu();
+    } else if(e.getSource().equals(buttons[3])) {
+      dispose();
+      new DeleteMenu();
+    }  
   }
 }
