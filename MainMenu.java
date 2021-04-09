@@ -17,52 +17,47 @@ public class MainMenu extends JFrame implements ActionListener{
    */
   private static final long serialVersionUID = 1L;
 
+  private JLabel title = new JLabel("Boba - Cool");
+  private JLabel subTitle = new JLabel("Menus");
   private JButton insertButton = new JButton("Insert Menu");
   private JButton viewButton = new JButton("View menus");
   private JButton updateButton = new JButton("Update menu");
   private JButton deleteButton = new JButton("Delete menu");
-
-  JButton[] buttons = {insertButton, viewButton, updateButton, deleteButton};
+  private JPanel topPanel = new JPanel();
+  private JPanel botContainer = new JPanel(new BorderLayout());
+  private JPanel botPanel = new JPanel();
+  
+  private JButton[] buttons = {insertButton, viewButton, updateButton, deleteButton};
   
   public MainMenu() {
+    initFrame();
+    initComponents();
+    initPanels();  
+    addComponentToPanel(); 
     
+    add(topPanel, BorderLayout.NORTH);
+    add(botContainer, BorderLayout.CENTER);
+    pack();
+    setLocationRelativeTo(null);
+    setVisible(true);
+  }
+  public void initFrame() {
     setTitle("Boba-Cool Main Menu");
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setResizable(false);
     setLayout(new BorderLayout());
-    // setSize(500, 750);
     setIconImage(Main.icon.getImage());
     getContentPane().setBackground(ColorPicker.yellow());
-    
-    JLabel title = new JLabel("Boba - Cool");
+  }
+  public void initComponents() {
     title.setFont(Main.title);
     title.setForeground(ColorPicker.blueDark());
     title.setIcon(Main.smallImage);
     title.setHorizontalTextPosition(JLabel.CENTER);
     title.setVerticalTextPosition(JLabel.TOP);
     title.setHorizontalAlignment(JLabel.CENTER); 
-
-    JPanel topPanel = new JPanel();
-    topPanel.setLayout(new BorderLayout());
-    topPanel.setOpaque(false);
-    topPanel.setBackground(new Color(255, 0, 0, 20));
-    topPanel.add(title, BorderLayout.NORTH);
-    topPanel.setBorder(BorderFactory.createLineBorder(ColorPicker.yellow(), 15));
     
     
-    JPanel botContainer = new JPanel(new BorderLayout());
-    botContainer.setOpaque(false);
-    botContainer.setPreferredSize(new Dimension(500, 300));
-    botContainer.setBackground(new Color(255, 0, 0, 20));
-    botContainer.setBorder(BorderFactory.createLineBorder(ColorPicker.yellow(), 15));
-    
-    JPanel botPanel = new JPanel();
-    botPanel.setLayout(new GridLayout(2, 2, 20, 20));
-    botPanel.setOpaque(false);
-    botPanel.setBackground(new Color(255, 0, 0, 20));
-    botPanel.setBorder(BorderFactory.createLineBorder(ColorPicker.yellow(), 15));
-
-    JLabel subTitle = new JLabel("Menus");
     subTitle.setFont(Main.menu);
     subTitle.setForeground(ColorPicker.blueDark());
     subTitle.setHorizontalTextPosition(JLabel.CENTER);
@@ -94,20 +89,33 @@ public class MainMenu extends JFrame implements ActionListener{
     deleteButton.setFont(Main.text);
     deleteButton.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, ColorPicker.yellowDarker(2)));
     deleteButton.addActionListener(this);
-
+  }
+  public void initPanels() {
+    topPanel.setLayout(new BorderLayout());
+    topPanel.setOpaque(false);
+    topPanel.setBackground(new Color(255, 0, 0, 20));
+    topPanel.setBorder(BorderFactory.createLineBorder(ColorPicker.yellow(), 15));
+    
+    botContainer.setOpaque(false);
+    botContainer.setPreferredSize(new Dimension(500, 300));
+    botContainer.setBackground(new Color(255, 0, 0, 20));
+    botContainer.setBorder(BorderFactory.createLineBorder(ColorPicker.yellow(), 15));
+    
+    botPanel.setLayout(new GridLayout(2, 2, 20, 20));
+    botPanel.setOpaque(false);
+    botPanel.setBackground(new Color(255, 0, 0, 20));
+    botPanel.setBorder(BorderFactory.createLineBorder(ColorPicker.yellow(), 15));
+  }
+  public void addComponentToPanel() {
+    topPanel.add(title, BorderLayout.NORTH);
     botPanel.add(insertButton);
     botPanel.add(viewButton);
     botPanel.add(updateButton);
     botPanel.add(deleteButton);
     botContainer.add(subTitle, BorderLayout.NORTH);
     botContainer.add(botPanel, BorderLayout.CENTER);
-
-    add(topPanel, BorderLayout.NORTH);
-    add(botContainer, BorderLayout.CENTER);
-    pack();
-    setLocationRelativeTo(null);
-    setVisible(true);
   }
+  
   @Override
   public void actionPerformed(ActionEvent e) {
     if(e.getSource().equals(buttons[0])) {
