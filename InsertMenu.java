@@ -3,19 +3,19 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.util.Random;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
-import javax.swing.ComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
@@ -84,6 +84,26 @@ public class InsertMenu extends JFrame implements ActionListener {
     codeLabel.setHorizontalAlignment(JLabel.LEFT);
     codeLabel.setPreferredSize(new Dimension(150, 50));
     
+    Random rand = new Random();
+    char[] chars = new char[6];
+    boolean valid = true;
+    chars[0] = 'B';
+    chars[1] = 'C';
+    chars[2] = '-';
+    do {
+      valid = true;
+      for(int i = 3; i < 6; i++) {
+        chars[i] = (char) (rand.nextInt(10) + '0');
+      }
+      for(Boba boba : Main.bobas) {
+        if(boba.getName().compareTo(String.valueOf(chars)) == 0) {
+          valid = false;
+          break;
+        }
+      }
+    } while(!valid);
+
+    code.setText(String.valueOf(chars));
     code.setFont(Main.menu);
     code.setHorizontalAlignment(JLabel.LEFT);
     code.setPreferredSize(new Dimension(250, 50));
@@ -108,6 +128,12 @@ public class InsertMenu extends JFrame implements ActionListener {
     priceField.setPreferredSize(new Dimension(250, 50));
     priceField.setFont(Main.inputText);
     priceField.setBorder(BorderFactory.createCompoundBorder(outBorder, inBorder));
+    priceField.addKeyListener(new KeyAdapter(){
+      public void keyTyped(KeyEvent e) {
+        char input = e.getKeyChar();
+        if(!(input >= '0' && input <= '9') && input != '\b') e.consume();
+      }
+    });
     
     changeTypeButton.setFont(new Font(null, Font.PLAIN, 30));
     changeTypeButton.setFocusable(false);
@@ -116,6 +142,7 @@ public class InsertMenu extends JFrame implements ActionListener {
     changeTypeButton.setBackground(new Color(0xE0F8FD));
     changeTypeButton.setPreferredSize(new Dimension(35, 35));
     
+    numbers.add(-1);
     for(int i = 0; i < 10; i++) numbers.add(i);
     
     stockBox = new JComboBox<Integer>(numbers);
@@ -129,6 +156,12 @@ public class InsertMenu extends JFrame implements ActionListener {
     stockField.setFont(Main.inputText);
     stockField.setBorder(BorderFactory.createCompoundBorder(outBorder, inBorder));
     stockField.setVisible(false);
+    stockField.addKeyListener(new KeyAdapter(){
+      public void keyTyped(KeyEvent e) {
+        char input = e.getKeyChar();
+        if(!(input >= '0' && input <= '9') && input != '\b') e.consume();
+      }
+    });
     
     confirmButton.setFont(Main.menu);
     confirmButton.setBackground(new Color(0xE0F8FD));
@@ -185,17 +218,44 @@ public class InsertMenu extends JFrame implements ActionListener {
     botPanel.add(backButton);
   }
   public void reset() {
-    changeTypeButton.setText("❌");
-    stockField.setText("");
-    stockField.setVisible(false);
-    stockBox.setVisible(true);
-    stockBox.setSelectedIndex(0);
-    stockField.setText("");
-    nameField.setText("");
-    priceField.setText("");
+    dispose();
+    new InsertMenu();
   }
-  public void submit() {
+  public boolean submit() {
+    String name = "", kode = "";
+    int price = -1, stock = -1;
+    name = nameField.getText();
+    kode = code.getText();
+    if(changeTypeButton.getText().compareTo("❌") == 0) stock = (int) stockBox.getSelectedItem();
+    else {
+      stock = Integer.parseInt(stockField.getText());
+    }
+    if(name == "" || kode == "" || priceField.getText() == "" || stock == -1) {
+        JOptionPane.showMessageDialog(null, "Please input valid data!", "Invalid data", JOptionPane.INFORMATION_MESSAGE);
+        return false;
+    }
+    price = Integer.parseInt(priceField.getText());
+
     
+    String str = "Name\t: " + name + "\nPrice\t: " + price + "\nStock\t: " + stock;
+    int choose = JOptionPane.showOptionDialog(
+      null, 
+      str,
+      "Confirm",
+      JOptionPane.YES_NO_OPTION, 
+      JOptionPane.WARNING_MESSAGE, 
+      null, 
+      null, 
+      0);
+    
+    if(choose == 1)
+      return false;
+    System.out.println(kode);
+    System.out.println(name);
+    System.out.println(price);
+    System.out.println(stock);
+    Main.bobas.add(new Boba(kode, name, price, stock));
+    return true;
   }
   @Override
   public void actionPerformed(ActionEvent e) {
@@ -213,13 +273,11 @@ public class InsertMenu extends JFrame implements ActionListener {
       }
     } else if(e.getSource() == backButton) {
       dispose();
-      reset();
       new MainMenu();
     } else if(e.getSource() == resetButton) {
       reset();
     } else if(e.getSource() == confirmButton) {
-      submit();
-      reset();
+      if(submit()) reset();
     }
     
   }
