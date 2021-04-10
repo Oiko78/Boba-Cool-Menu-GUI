@@ -186,21 +186,19 @@ public class InsertMenu extends JFrame implements ActionListener {
   }
   public void initPanels() {
     titlePanel.setPreferredSize(new Dimension(500, 75));
-    // titlePanel.setBackground(new Color(0xC2F1FB));
     titlePanel.setOpaque(false);
-    titlePanel.add(title, BorderLayout.SOUTH);
     
     contentPanel.setPreferredSize(new Dimension(500, 275));
     contentPanel.setBorder(BorderFactory.createEmptyBorder(15, 30, 15, 30));
     contentPanel.setOpaque(false);
     
     botPanel.setPreferredSize(new Dimension(500, 75));
-    // botPanel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
     botPanel.setOpaque(false);
     
     formPanel.setOpaque(false);
    }
   public void addComponentToPanel() {
+    titlePanel.add(title, BorderLayout.SOUTH);
     formPanel.add(codeLabel);
     formPanel.add(code);
     formPanel.add(nameLabel);
@@ -214,8 +212,8 @@ public class InsertMenu extends JFrame implements ActionListener {
     // contentPanel.add(code, BorderLayout.NORTH);
     contentPanel.add(formPanel, BorderLayout.CENTER);
     botPanel.add(resetButton);
-    botPanel.add(confirmButton);
     botPanel.add(backButton);
+    botPanel.add(confirmButton);
   }
   public void reset() {
     dispose();

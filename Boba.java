@@ -1,8 +1,8 @@
 public class Boba {
   private String code;
   private String name;
-  private int price;
-  private int stock;
+  private Integer price;
+  private Integer stock;
 
   public Boba(String code, String name, int price, int stock) {
     this.code = code;
@@ -27,19 +27,19 @@ public class Boba {
     this.name = name;
   }
 
-  public int getPrice() {
+  public Integer getPrice() {
     return this.price;
   }
 
-  public void setPrice(int price) {
+  public void setPrice(Integer price) {
     this.price = price;
   }
 
-  public int getStock() {
+  public Integer getStock() {
     return this.stock;
   }
 
-  public void setStock(int stock) {
+  public void setStock(Integer stock) {
     this.stock = stock;
   }
 
