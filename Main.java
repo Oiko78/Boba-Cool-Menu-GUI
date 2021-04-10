@@ -2,6 +2,8 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Image;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 
@@ -9,7 +11,7 @@ public class Main {
   public static Font menu, title, text, inputText;
   public static ImageIcon icon = new ImageIcon(Main.class.getResource("/Images/boba-icon.jpg"));
   public static ImageIcon smallImage = new ImageIcon(new ImageIcon(Main.class.getResource("/Images/boba-icon-transparent.png")).getImage().getScaledInstance(250, 250, Image.SCALE_DEFAULT));
-
+  public static List<Boba> bobas = new ArrayList<>();
   public static void main(String[] args) {
     try {
       title = Font.createFont(Font.TRUETYPE_FONT, Main.class.getResourceAsStream("/Fonts/BebasNeue-Bold.ttf")).deriveFont(55f);

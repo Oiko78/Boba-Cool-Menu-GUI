@@ -69,25 +69,25 @@ public class MainMenu extends JFrame implements ActionListener{
     insertButton.setBackground(ColorPicker.yellowDarker(0));
     insertButton.setFocusable(false);
     insertButton.setFont(Main.text);
-    insertButton.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, ColorPicker.yellowDarker(2)));
+    insertButton.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, ColorPicker.yellowDarker(2)));
     insertButton.addActionListener(this);
 
     viewButton.setBackground(ColorPicker.yellowDarker(0));
     viewButton.setFocusable(false);
     viewButton.setFont(Main.text);
-    viewButton.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, ColorPicker.yellowDarker(2)));
+    viewButton.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, ColorPicker.yellowDarker(2)));
     viewButton.addActionListener(this);
 
     updateButton.setBackground(ColorPicker.yellowDarker(0));
     updateButton.setFocusable(false);
     updateButton.setFont(Main.text);
-    updateButton.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, ColorPicker.yellowDarker(2)));
+    updateButton.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, ColorPicker.yellowDarker(2)));
     updateButton.addActionListener(this);
 
     deleteButton.setBackground(ColorPicker.yellowDarker(0));
     deleteButton.setFocusable(false);
     deleteButton.setFont(Main.text);
-    deleteButton.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, ColorPicker.yellowDarker(2)));
+    deleteButton.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, ColorPicker.yellowDarker(2)));
     deleteButton.addActionListener(this);
   }
   public void initPanels() {
