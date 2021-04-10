@@ -47,9 +47,9 @@ public class InsertMenu extends JFrame implements ActionListener {
   private JTextField priceField = new JTextField();
   
   private JButton changeTypeButton = new JButton("❌"); // ✔ ❌
+  private JButton backButton = new JButton("back");
   private JButton confirmButton = new JButton("confirm");
   private JButton resetButton = new JButton("reset");
-  private JButton backButton = new JButton("back");
 
   private JPanel titlePanel = new JPanel(new BorderLayout());
   private JPanel formPanel = new JPanel(new FlowLayout(FlowLayout.LEADING, 15, 10));
@@ -247,10 +247,10 @@ public class InsertMenu extends JFrame implements ActionListener {
     
     if(choose == 1)
       return false;
-    // System.out.println(kode);
-    // System.out.println(name);
-    // System.out.println(price);
-    // System.out.println(stock);
+    System.out.println(kode);
+    System.out.println(name);
+    System.out.println(price);
+    System.out.println(stock);
     Main.bobas.add(new Boba(kode, name, price, stock));
     return true;
   }

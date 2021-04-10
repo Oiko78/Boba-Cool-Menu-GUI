@@ -59,21 +59,7 @@ public class ViewMenu extends JFrame implements ActionListener{
     title.setHorizontalAlignment(JLabel.CENTER);
     title.setVerticalAlignment(JLabel.CENTER);
 
-    String[] colName = {"Code", "Name", "Price", "Stock"};
-    // Main.bobas.add(new Boba("BC-123", "BOBA BOBA BOBA", 123, 2));
-    // Main.bobas.add(new Boba("BC-123", "BOBA BOBA BOBA", 200000, 2));
-    // Main.bobas.add(new Boba("BC-123", "BOBA BOBA BOBA", 123, 2));
-    // Main.bobas.add(new Boba("BC-123", "BOBA BOBA BOBA", 123, 2));
-    // Main.bobas.add(new Boba("BC-123", "BOBA BOBA BOBA", 123, 2));
-    // Main.bobas.add(new Boba("BC-123", "BOBA BOBA BOBA", 123, 2));
-    // Main.bobas.add(new Boba("BC-123", "BOBA BOBA BOBA", 123, 2));
-    // Main.bobas.add(new Boba("BC-123", "BOBA BOBA BOBA", 123, 2));
-    // Main.bobas.add(new Boba("BC-123", "BOBA BOBA BOBA", 123, 2));
-    // Main.bobas.add(new Boba("BC-123", "BOBA BOBA BOBA", 123, 2));
-    // Main.bobas.add(new Boba("BC-123", "BOBA BOBA BOBA", 123, 2));
-    // Main.bobas.add(new Boba("BC-123", "BOBA BOBA BOBA", 123, 2));
-    // Main.bobas.add(new Boba("BC-123", "BOBA BOBA BOBA", 123, 2));
-    
+    String[] colName = {"Code", "Name", "Price", "Stock"};    
 
     Object[][] data = new Object[Main.bobas.size()][4];
     for(int i = 0; i < Main.bobas.size(); i++) {
@@ -116,6 +102,9 @@ public class ViewMenu extends JFrame implements ActionListener{
     table.setShowVerticalLines(false);
     table.setFillsViewportHeight(true);
     table.setPreferredScrollableViewportSize(new Dimension(600, 300));
+    table.setCellSelectionEnabled(false);
+    table.setFocusable(false);
+    table.setDragEnabled(false);
     // table.setCellSelectionEnabled(false);
     // table.setRowSelectionAllowed(false);
     // table.setColumnSelectionAllowed(false);

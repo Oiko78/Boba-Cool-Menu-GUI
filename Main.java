@@ -22,8 +22,13 @@ public class Main {
     } catch(IOException | FontFormatException e) {
       // Do nothing
     }
-    // new MainMenu();
+   bobas.add(new Boba("BC-123", "BOBA BOBA BOBA", 123, 2));
+   bobas.add(new Boba("BC-123", "BOBA BOBA BOBA", 200000, 2));
+   bobas.add(new Boba("BC-123", "BOBA BOBA BOBA", 123, 2));
+   bobas.add(new Boba("BC-123", "BOBA BOBA BOBA", 123, 2));
+    new MainMenu();
     // new InsertMenu();
-    new ViewMenu();
+    // new ViewMenu();
+    // new UpdateMenu();
   }
 }

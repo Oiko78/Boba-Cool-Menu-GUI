@@ -11,6 +11,12 @@ public class Boba {
     this.stock = stock;
   }
 
+  public void update(String name, int price, int stock) {
+    this.name = name;
+    this.price = price;
+    this.stock = stock;
+  }
+
   public String getCode() {
     return this.code;
   }
