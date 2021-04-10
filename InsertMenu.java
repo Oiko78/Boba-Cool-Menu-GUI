@@ -225,15 +225,14 @@ public class InsertMenu extends JFrame implements ActionListener {
     name = nameField.getText();
     kode = code.getText();
     if(changeTypeButton.getText().compareTo("❌") == 0) stock = (int) stockBox.getSelectedItem();
-    else {
-      stock = Integer.parseInt(stockField.getText());
-    }
-    if(name == "" || kode == "" || priceField.getText() == "" || stock == -1) {
+    if(name == "" || kode == "" || priceField.getText() == "" ||
+       (changeTypeButton.getText().compareTo("✔") == 0 && stockField.getText() == "") ||
+       (changeTypeButton.getText().compareTo("❌") == 0 && stock == -1)) {
         JOptionPane.showMessageDialog(null, "Please input valid data!", "Invalid data", JOptionPane.INFORMATION_MESSAGE);
         return false;
     }
     price = Integer.parseInt(priceField.getText());
-
+    if(changeTypeButton.getText().compareTo("✔") == 0) stock = Integer.parseInt(stockField.getText());
     
     String str = "Name\t: " + name + "\nPrice\t: " + price + "\nStock\t: " + stock;
     int choose = JOptionPane.showOptionDialog(
@@ -248,10 +247,10 @@ public class InsertMenu extends JFrame implements ActionListener {
     
     if(choose == 1)
       return false;
-    System.out.println(kode);
-    System.out.println(name);
-    System.out.println(price);
-    System.out.println(stock);
+    // System.out.println(kode);
+    // System.out.println(name);
+    // System.out.println(price);
+    // System.out.println(stock);
     Main.bobas.add(new Boba(kode, name, price, stock));
     return true;
   }
