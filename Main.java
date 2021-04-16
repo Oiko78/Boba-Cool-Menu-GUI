@@ -2,13 +2,11 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Image;
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Vector;
 
 import javax.swing.ImageIcon;
 
-import Database.DBConnect;
 import dao.MenuDAO;
 
 public class Main {

@@ -164,7 +164,8 @@ public class DeleteMenu extends JFrame implements ActionListener{
   }
   
   public void updateDatabase(int idx) {
-    Main.bobas.remove(idx);;
+    Main.menuDAO.deleteData(Main.bobas.get(idx).getCode());
+    Main.bobas.remove(idx);
   }
   public void updateTableData(int idx) {
     model.removeRow(idx);

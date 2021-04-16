@@ -47,5 +47,24 @@ public class MenuDAO {
       // Do nothing
     }
   }
-  
+  public void updateData(String code, String name, int price, int stock) {
+    try {
+      Statement statement = connection.createStatement();
+      String sql = "update menus set name='"+name+"',price="+price+",stock="+stock;
+      statement.executeUpdate(sql);
+      System.out.println("Update data successfull");
+    } catch (SQLException e) {
+      // Do nothing
+    }
+  }
+  public void deleteData(String code) {
+    try {
+      Statement statement = connection.createStatement();
+      String sql = "delete from menus where code='"+code+"'";
+      statement.executeUpdate(sql);
+      System.out.println("Delete data successfull");
+    } catch (SQLException e) {
+      // Do nothing
+    }
+  }
 }

@@ -21,6 +21,8 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.MatteBorder;
 
+import dao.Boba;
+
 public class InsertMenu extends JFrame implements ActionListener {
 
   /**
@@ -251,6 +253,7 @@ public class InsertMenu extends JFrame implements ActionListener {
     System.out.println(name);
     System.out.println(price);
     System.out.println(stock);
+    Main.bobas.add(new Boba(kode, name, price, stock));
     Main.menuDAO.insertData(kode, name, price, stock);
     return true;
   }

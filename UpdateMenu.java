@@ -247,6 +247,7 @@ public class UpdateMenu extends JFrame implements ActionListener, MouseListener 
     return true;
   }
   public void updateDatabase(int idx, String name, int price, int stock) {
+    Main.menuDAO.updateData(Main.bobas.get(idx).getCode(), name, price, stock);
     Main.bobas.get(idx).update(name, price, stock);
   }
   public void updateTableData(int idx, String name, int price, int stock) {
