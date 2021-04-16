@@ -95,7 +95,7 @@ public class InsertMenu extends JFrame implements ActionListener {
       for(int i = 3; i < 6; i++) {
         chars[i] = (char) (rand.nextInt(10) + '0');
       }
-      for(Boba boba : Main.bobas) {
+      for(dao.Boba boba : Main.bobas) {
         if(boba.getName().compareTo(String.valueOf(chars)) == 0) {
           valid = false;
           break;
@@ -251,7 +251,7 @@ public class InsertMenu extends JFrame implements ActionListener {
     System.out.println(name);
     System.out.println(price);
     System.out.println(stock);
-    Main.bobas.add(new Boba(kode, name, price, stock));
+    Main.menuDAO.insertData(kode, name, price, stock);
     return true;
   }
   @Override

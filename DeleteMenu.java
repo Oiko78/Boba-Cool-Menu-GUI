@@ -74,7 +74,7 @@ public class DeleteMenu extends JFrame implements ActionListener{
     String[] colName = {"Code", "Name", "Price", "Stock"};
     Object[][] data = new Object[Main.bobas.size()][4];
     for(int i = 0; i < Main.bobas.size(); i++) {
-      Boba boba = Main.bobas.get(i);
+      dao.Boba boba = Main.bobas.get(i);
       data[i][0] = boba.getCode();
       data[i][1] = boba.getName();
       data[i][2] = boba.getPrice();

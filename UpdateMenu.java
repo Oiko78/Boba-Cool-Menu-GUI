@@ -88,7 +88,7 @@ public class UpdateMenu extends JFrame implements ActionListener, MouseListener 
     String[] colName = {"Code", "Name", "Price", "Stock"};
     Object[][] data = new Object[Main.bobas.size()][4];
     for(int i = 0; i < Main.bobas.size(); i++) {
-      Boba boba = Main.bobas.get(i);
+      dao.Boba boba = Main.bobas.get(i);
       data[i][0] = boba.getCode();
       data[i][1] = boba.getName();
       data[i][2] = boba.getPrice();
@@ -266,7 +266,7 @@ public class UpdateMenu extends JFrame implements ActionListener, MouseListener 
     stockField.setEditable(true);
     stockBox.setEnabled(true);
   }
-  public void changeFieldText(Boba boba) {
+  public void changeFieldText(dao.Boba boba) {
     nameField.setText(boba.getName());
     priceField.setText(Integer.toString(boba.getPrice()));
     if(boba.getStock() <= 9) {
